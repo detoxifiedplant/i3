@@ -194,11 +194,18 @@ bindsym $mod+Shift+r mode "resize"
 bar {
 	status_command i3status --config ~/.config/i3/i3status.conf
 	position top
-	mode hide
+	# mode hide
 	colors {
 		background #000000
 		statusline #ffffff
 	}
 }
+
+bindsym $mod+y border pixel 1
+bindsym $mod+t border normal 0
+
+default_border 1pixel
+
+# default_floating_border pixel 0
 
 # exc_always alacritty
