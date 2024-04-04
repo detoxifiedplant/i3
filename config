@@ -13,13 +13,6 @@ font pango:Hack Neard Font 10
 # https://wiki.archlinux.org/index.php/XDG_Autostart
 exec --no-startup-id dex --autostart --environment i3
 
-# The combination of xss-lock, nm-applet and pactl is a popular choice, so
-# they are included here as an example. Modify as you see fit.
-
-# xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
-# screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork
-
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
@@ -43,7 +36,7 @@ bindsym $mod+Insert exec brightnessctl s 7%- > /dev/null && notify-send Brightne
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec alacritty
+# bindsym $mod+Return exec alacritty
 bindsym $mod+f exec alacritty
 
 # start (a program launcher)
@@ -53,8 +46,10 @@ bindsym $mod+e exec alacritty -e ranger
 bindsym $mod+a exec nemo
 bindsym $mod+c exec google-chrome-stable
 bindsym $mod+x exec firefox
-bindsym $mod+u exec thunderbird
-bindsym $mod+comma exec i3lock
+bindsym $mod+Shift+m exec thunderbird
+# bindsym $mod+comma exec i3lock
+bindsym $mod+Return exec i3lock --nofork --color=#444444 --no-unlock-indicator
+exec_always xautolock -time 10 -locker "i3lock --nofork --color=#444444--no-unlock-indicator"
 
 #layouts
 bindsym $mod+i fullscreen toggle
@@ -79,12 +74,6 @@ bindsym Ctrl+Shift+Print exec --no-startup-id maim --select | xclip -selection c
 # autostart
 exec --no-startup-id redshift -P -O 4320
 exec xinput set-prop 10 'libinput Accel Speed' 0.45
-
-# A more modern dmenu replacement is rofi:
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# There also is i3-dmenu-desktop which only displays applications shipping a
-# .desktop file. It is a wrapper around dmenu, so you need that installed.
-# bindcode $mod+40 exec --no-startup-id i3-dmenu-desktop
 
 # change focus
 bindsym $mod+h focus left
@@ -226,4 +215,3 @@ client.background       #F8F8F2
 
 default_border 1pixel
 # default_floating_border pixel 0
-
